@@ -33,4 +33,10 @@ node {
         workerImage.push()
       }
     }
+    stage('Test deploy') {
+      docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
+        sh ‘docker-compose –f build-compose.yml run –rm test’
+      }
+    }
+
 }
