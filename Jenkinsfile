@@ -3,9 +3,9 @@ node {
     def voteImage
     def workerImage
     
-    stage('Clone repo') {
+    // stage('Clone repo') {
       checkout scm
-    }
+    // }
     stage('Build result') {
       resultImage = docker.build("spara/result", "./result")
     } 
