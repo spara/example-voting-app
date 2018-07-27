@@ -2,41 +2,42 @@ node {
     def resultImage
     def voteImage
     def workerImage
-    
-    stage('Clone repo') {
-      checkout scm
-    }
-    stage('Build result') {
-      resultImage = docker.build("spara/result", "./result")
-    } 
-    stage('Build vote') {
-      voteImage = docker.build("spara/vote", "./vote")
-    }
-    stage('Build worker dotnet') {
-      workerImage = docker.build("spara/worker", "./worker")
-    }
-    stage('Push result image') {
-      docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
-        resultImage.push("${env.BUILD_NUMBER}")
-        resultImage.push()
+    docker.withRegistry("https://index.docker.io/v1/", "spara" ) { 
+      stage('Clone repo') {
+        checkout scm
       }
-    }
-    stage('Push vote image') {
-      docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
-        voteImage.push("${env.BUILD_NUMBER}")
-        voteImage.push()
+      stage('Build result') {
+        resultImage = docker.build("spara/result", "./result")
+      } 
+      stage('Build vote') {
+        voteImage = docker.build("spara/vote", "./vote")
       }
-    }
-    stage('Push worker image') {
-      docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
-        workerImage.push("${env.BUILD_NUMBER}")
-        workerImage.push()
+      stage('Build worker dotnet') {
+        workerImage = docker.build("spara/worker", "./worker")
       }
-    }
-    stage('Test deploy') {
-      // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
-        sh ‘docker-compose –f build-compose.yml run –rm test’
-      // }
+      stage('Push result image') {
+        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
+          resultImage.push("${env.BUILD_NUMBER}")
+          resultImage.push()
+        // }
+      }
+      stage('Push vote image') {
+        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
+          voteImage.push("${env.BUILD_NUMBER}")
+          voteImage.push()
+        // }
+      }
+      stage('Push worker image') {
+        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
+          workerImage.push("${env.BUILD_NUMBER}")
+          workerImage.push()
+        // }
+      }
+      stage('Test deploy') {
+        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
+          sh ‘docker-compose –f build-compose.yml run –rm test’
+        // }
+      }
     }
 
 }
