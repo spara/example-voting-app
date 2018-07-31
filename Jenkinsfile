@@ -35,7 +35,7 @@ node {
       }
       stage('Test deploy') {
         // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
-          sh 'docker-compose –f build-compose.yml run –rm test'
+          sh 'docker-compose –f docker-compose.yml run –rm test'
           
         // }
       }
