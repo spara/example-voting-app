@@ -34,7 +34,7 @@ node {
         // }
       }
       stage('Test deploy') {
-        sh "docker-compose -f docker-compose.yml up -rm"
+        sh "docker-compose -f docker-compose.yml up"
       }
     }
 
