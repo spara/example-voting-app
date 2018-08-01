@@ -28,7 +28,7 @@ node {
           workerImage.push()
       }
       stage('Test deploy') {
-        sh "docker-compse -f fdocker-compose-simple.yml up"
+        sh "docker-compse -f docker-compose-simple.yml up"
       }
     }
 
