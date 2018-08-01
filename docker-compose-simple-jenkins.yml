@@ -3,7 +3,7 @@ version: "3"
 services:
   vote:
     image: spara/vote:latest
-    command: python app.py
+    # command: python app.py
     volumes:
      - ./vote:/app
     ports:
@@ -21,7 +21,7 @@ services:
 
   result:
     image: spara/result:latest
-    command: nodemon server.js
+    # command: nodemon server.js
     volumes:
       - ./result:/app
     ports:
