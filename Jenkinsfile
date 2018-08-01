@@ -28,7 +28,7 @@ node {
           workerImage.push()
       }
       stage('Test deploy') {
-        sh "docker stack deploy -c docker-compose-jenkins.yml voting-app"
+        sh "docker-compse -f fdocker-compose-simple.yml up"
       }
     }
 
