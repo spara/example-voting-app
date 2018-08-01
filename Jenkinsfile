@@ -28,8 +28,12 @@ node {
           workerImage.push()
       }
       stage('Test deploy') {
-        sh "docker-compose -f docker-compose-simple-jenkins.yml up -d"
+        sh "docker-compose -f docker-compose-simple-jenkins.yml up -d -v"
+      }
+      post {
+        always {
+            sh "docker-compose down -v"
+        }
       }
     }
-
 }
