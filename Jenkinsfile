@@ -34,7 +34,7 @@ node {
         // }
       }
       stage('Test deploy') {
-        sh "docker-compose -f docker-compose-jenkins.yml up"
+        sh "docker stack deploy -c docker-compose-jenkins.yml voting-app"
       }
     }
 
