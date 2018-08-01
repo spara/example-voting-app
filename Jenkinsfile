@@ -16,22 +16,16 @@ node {
         workerImage = docker.build("spara/worker", "./worker")
       }
       stage('Push result image') {
-        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
           resultImage.push("${env.BUILD_NUMBER}")
           resultImage.push()
-        // }
       }
       stage('Push vote image') {
-        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
           voteImage.push("${env.BUILD_NUMBER}")
           voteImage.push()
-        // }
       }
       stage('Push worker image') {
-        // docker.withRegistry("https://index.docker.io/v1/", "spara" ) {
           workerImage.push("${env.BUILD_NUMBER}")
           workerImage.push()
-        // }
       }
       stage('Test deploy') {
         sh "docker stack deploy -c docker-compose-jenkins.yml voting-app"

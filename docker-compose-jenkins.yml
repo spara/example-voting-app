@@ -2,7 +2,7 @@ version: "3"
 
 services:
   vote:
-    image: spara/vote
+    image: spara/vote:latest
     container_name: vote
     volumes:
      - ./vote:/app
@@ -13,7 +13,7 @@ services:
       - back-tier
 
   result:
-    image: spara/result
+    image: spara/result:latest
     container_name: result
     command: nodemon server.js
     volumes:
@@ -26,7 +26,7 @@ services:
       - back-tier
 
   worker:
-    image: spara/worker
+    image: spara/worker:latest
     container_name: worker
     depends_on:
       - "redis"
