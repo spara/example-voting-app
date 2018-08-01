@@ -3,7 +3,6 @@ version: "3"
 services:
   vote:
     image: spara/vote:latest
-    container_name: vote
     command: python app.py
     volumes:
      - ./vote:/app
@@ -16,14 +15,12 @@ services:
 
   worker:
     image: spara/worker:latest
-    container_name: worker
 
   db:
     image: postgres:9.4
 
   result:
     image: spara/result:latest
-    container_name: result
     command: nodemon server.js
     volumes:
       - ./result:/app
