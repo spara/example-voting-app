@@ -28,7 +28,7 @@ node {
           workerImage.push()
       }
       stage('Test deploy') {
-        sh "docker-compose -f docker-compose-simple-jenkins.yml up -d -v"
+        sh "docker-compose -f docker-compose-simple-jenkins.yml up -d --verbose ---abort-on-container-exit"
       }
       post {
         always {
